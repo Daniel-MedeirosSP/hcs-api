@@ -1,0 +1,51 @@
+# Porta principal da aplicação
+server:
+  port: 8080
+
+# Configurações do Spring Boot Actuator
+management:
+  # Roda os endpoints do Actuator em uma porta separada
+  server:
+    port: 9091
+
+  endpoints:
+    web:
+      # Expõe apenas os endpoints mais seguros e úteis
+      exposure:
+        include: health, info, metrics, prometheus, loggers
+      # Define o caminho base para todos os endpoints do Actuator
+      base-path: /management
+
+  # Mostra detalhes completos no endpoint /health
+  endpoint:
+    health:
+      show-details: always
+
+  # Adiciona informações customizadas ao endpoint /info
+  info:
+    git:
+      mode: full # Mostra informações completas do Git (requer um plugin)
+
+# Informações que serão exibidas no endpoint /management/info
+info:
+  application:
+    name: Hero Cards API
+    description: API de Cards de Heróis
+    version: 1.0-SNAPSHOT
+    artefact: '@project.artifactId@'
+    group: '@project.groupId@'
+
+# Configuração de logging
+logging:
+  level:
+    # Define o nível de log padrão para o seu pacote
+    com.meuprojeto: INFO
+
+SERVER:
+  PORT: 8081
+
+# Configuração de API's de Acesso
+
+#DRAGONBALL
+base_api_dragonball:  dragonball-api.com/api
+base_api_dragonball_collect: ?limit=100
